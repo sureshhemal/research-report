@@ -1,0 +1,35 @@
+\begin{figure}[H]
+\centering
+
+\pgfplotstableread[col sep=comma]{results/cod_dataset.csv} \dataset
+
+\begin{tikzpicture} \begin{axis}[
+    ybar = 1.5pt,
+    bar width = 5pt,
+    width = 15cm,
+    height = 10cm,
+    axis lines = left,
+    enlarge x limits = 0.02,
+    ymin = 0,
+    ymax = 1700,
+     ymajorgrids=true, % Display only major gridlines
+                    yminorgrids=true, % Display minor gridlines
+                    extra y tick labels={}, % Empty labels for extra y ticks
+                    extra y ticks={100,300, ..., 1700}, % Add extra y ticks with minor tick values
+                    extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
+    legend style={at={(0.5,-0.15)},
+    anchor=north,legend columns=-1},
+    xlabel = Week,
+    ylabel = COD (mg/l),
+]
+    \addplot table[x index = {0}, y index = {1}]{\dataset};
+    \addplot table[x index = {0}, y index = {2}]{\dataset};
+    
+    \legend{Influent, Effluent}
+\end{axis}
+\draw [thick, black] (-2.25,-2.25) rectangle (14.25,9);
+\end{tikzpicture}
+
+\caption{Variation of COD of influent and effluent }
+\label{fig:COD_graph}
+\end{figure}

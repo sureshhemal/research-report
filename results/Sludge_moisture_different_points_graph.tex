@@ -1,0 +1,51 @@
+\begin{figure}[H]
+\centering
+
+\pgfplotstableread[col sep=comma]{results/sludge_moisture_different_point_dataset.csv} \dataset
+                \begin{tikzpicture}
+                \begin{axis}[
+                    ybar = 1.5pt,
+                    bar width = 9pt,
+                    enlarge x limits={abs=0.8}, % Adjust spacing between bars
+                    date coordinates in=x,
+                    axis lines = left,
+                    table/col sep=comma,
+                    xlabel = Time (Date),
+                    xlabel style={
+                        at={(0.5,-11ex)}
+                    },
+                    xticklabel style={
+                        rotate=45,
+                        anchor=near xticklabel,
+                    },
+                    xtick=data,
+                    xticklabel=\year-\month-\day,
+                    width = 15cm,
+                    height = 10cm,
+                    ylabel = Moisture Content (\%),
+                    legend style={at={(0.5,-0.4)},
+                    anchor=north,legend columns=-1},
+                    ymin = 0,
+                    ymax = 70,
+                    enlarge x limits = 0.10,
+                    ymajorgrids=true, % Display only major gridlines
+                    yminorgrids=true, % Display minor gridlines
+                    extra y tick labels={}, % Empty labels for extra y ticks
+                    extra y ticks={5, 15, ..., 65}, % Add extra y ticks with minor tick values
+                    extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
+                    ]
+                    \addplot table[x index = {0}, y index = {1}] {\dataset};
+                    \addplot table[x index = {0}, y index = {2}] {\dataset};
+                    \addplot table[x index = {0}, y index = {3}] {\dataset};
+                    \addplot table[x index = {0}, y index = {4}] {\dataset};
+                    \addplot table[x index = {0}, y index = {5}] {\dataset};
+
+                    \legend{sample 1, sample 2, sample 3, sample 4, sample 5};
+
+                \end{axis}
+                \draw [thick, black] (-2,-4.25) rectangle (14,9);
+            \end{tikzpicture}
+
+\caption{Variation in moisture content in different sampling points at sludge drying bed}
+\label{fig:mc_differentpoints__graph}
+\end{figure}

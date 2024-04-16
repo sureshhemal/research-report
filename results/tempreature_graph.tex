@@ -1,0 +1,34 @@
+\begin{figure}[H]
+\centering
+
+\pgfplotstableread[col sep=comma]{results/temp_vs_time_dataset.csv} \dataset
+
+\begin{tikzpicture} \begin{axis}[
+    ybar = 1.5pt,
+    bar width = 4pt,
+    width = 15cm,
+    height = 10cm,
+    axis lines = left,
+    enlarge x limits = 0.02,
+    ymin = 25, ymax = 32,
+    ymajorgrids=true, % Display only major gridlines
+                    yminorgrids=true, % Display minor gridlines
+                    extra y tick labels={}, % Empty labels for extra y ticks
+                    extra y ticks={25.5,26.5, ..., 31.5}, % Add extra y ticks with minor tick values
+                    extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
+    legend style={at={(0.5,-0.15)},
+    anchor=north,legend columns=-1},
+    xlabel = Week,
+    ylabel = Temperature (°C),
+]
+    \addplot table[x index = {0}, y index = {1}]{\dataset};
+    \addplot table[x index = {0}, y index = {2}]{\dataset};
+    
+    \legend{Influent, Effluent}
+\end{axis}
+\draw [thick, black] (-2.25,-2.25) rectangle (14.25,9);
+\end{tikzpicture}
+
+\caption{Variation in temperature of influent and effluent}
+\label{fig:tempreature_graph}
+\end{figure}

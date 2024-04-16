@@ -1,0 +1,52 @@
+\begin{figure}[H]
+\centering
+
+\pgfplotstableread[col sep=comma] {results/Solid_recovered_dataset.csv} \dataset
+                \begin{tikzpicture}
+                \begin{axis}[
+                    ybar = 4pt,
+                    bar width = 10pt,
+                    date coordinates in=x,
+                    axis lines = left,
+                    table/col sep=comma,
+                    scaled ticks=false,
+                    xlabel = Date,
+                    xlabel style={
+                        at={(0.5,-11ex)}
+                    },
+                    ylabel style={
+                        at={(-0.125, 0.5)}
+                    },
+                    xticklabel style={
+                        rotate=45,
+                        anchor=near xticklabel,
+                    },
+                    xtick=data,
+                    xticklabel=\year-\month-\day,
+                    legend style={at={(0.4,-0.4)},
+                    anchor=north,legend columns=-1},
+                    width = 15cm,
+                    height = 9cm,
+                    ylabel = TSS (mg/l),
+                    ymax=30000,
+                    ymin=0,
+                    xmin = 2023-11-25,
+                    xmax = 2024-02-10,
+                    ymajorgrids=true, % Display only major gridlines
+                    yminorgrids=true, % Display minor gridlines
+                    extra y tick labels={}, % Empty labels for extra y ticks
+                    extra y ticks={2500, 7500, 12500, 17500, 22500, 27500}, % Add extra y ticks with minor tick values
+                    extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
+                    ]
+                    \addplot table[x index = {0}, y index = {1}]{\dataset};
+                    
+                    \addplot table[x index = {0}, y index = {2}]{\dataset};
+
+    \legend{Return water TSS, Sludge tank TSS}
+                \end{axis}
+                \draw [thick, black] (-2.5,-3.85) rectangle (14,9);
+            \end{tikzpicture}
+
+\caption{Variation of TSS in Sludge storage tank and the return water}
+\label{fig:Solid_Recovered_graph}
+\end{figure}

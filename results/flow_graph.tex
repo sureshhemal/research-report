@@ -1,0 +1,31 @@
+\begin{figure}[H]
+    \centering
+
+    \pgfplotstableread[col sep=comma]{results/flow_dataset.csv} \dataset
+
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = left,
+            scaled ticks=false,
+            xlabel = Week,
+            width = 13cm,
+            height = 10cm,
+            ylabel = Flow \unit{m^3},
+            legend pos = south west,
+            ymax=40000,
+            ymin=5000,
+            ymajorgrids=true, % Display only major gridlines
+            yminorgrids=true, % Display minor gridlines
+            extra y tick labels={}, % Empty labels for extra y ticks
+            extra y ticks={7500,12500,17500,22500,27500,32500,37500}, % Add extra y ticks with minor tick values
+            extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
+        ]
+
+            \addplot table[x index = {0}, y index = {1}]{\dataset};
+        \end{axis}
+         \draw [thick, black] (-2.5,-1.75) rectangle (13,9);
+    \end{tikzpicture}
+
+    \caption{Variation of the flow}
+    \label{fig:flow_graph}
+\end{figure}

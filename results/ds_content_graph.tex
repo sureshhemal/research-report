@@ -1,0 +1,42 @@
+\begin{figure}[H]
+\centering
+
+\pgfplotstableread[col sep=comma] {results/ds_content_dataset.csv} \dataset
+                \begin{tikzpicture}
+                \begin{axis}[
+                ybar,
+                bar width = 10pt,
+                    date coordinates in=x,
+                    axis lines = left,
+                    table/col sep=comma,
+                    xlabel = Date,
+                    xlabel style={
+                        at={(0.5,-11ex)}
+                    },
+                    xticklabel style={
+                        rotate=45,
+                        anchor=near xticklabel,
+                    },
+                    xtick=data,
+                    xticklabel=\year-\month-\day,
+                    width = 15cm,
+                    height = 9cm,
+                    ylabel = Solid Content (\%),
+                    ymax=15,
+                    ymin=10,
+                     xmin = 2023-11-25,
+                    xmax = 2024-02-10,
+                    ymajorgrids=true, % Display only major gridlines
+                    yminorgrids=true, % Display minor gridlines
+                    extra y tick labels={}, % Empty labels for extra y ticks
+                    extra y ticks={10.50, 11.50,12.5,13.5,14.50}, % Add extra y ticks with minor tick values
+                    extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
+                    ]
+                    \addplot  table[x=Date,y=Solid content] {\dataset};;
+                \end{axis}
+                \draw [thick, black] (-2,-2.8) rectangle (14,8);
+            \end{tikzpicture}
+
+\caption{Variation in solid content of the dewatered sludge}
+\label{fig:ds_content_graph}
+\end{figure}

@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[a4paper,top=2.4cm,bottom=2.4cm,left=2.4cm,right=2.4cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[printonlyused,withpage]{acronym}
+\usepackage[version=4,arrows=pgf-filled]{mhchem}
+\usepackage{float}
+\usepackage{booktabs}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% Set global legend style
+\pgfplotsset{
+    every axis legend/.append style={
+        draw=none % Remove legend border
+    }
+}
+\usepgfplotslibrary{dateplot}
+\usetikzlibrary{pgfplots.dateplot,}
+
+\usepackage{multirow, multicol}
+\usepackage{cleveref}
+\usepackage{numprint}
+\npthousandsep{,}
+
+% packages for table
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{csvsimple}
+\usepackage{multirow}
+
+%package for indent
+\usepackage{indentfirst}
+\setlength{\parindent}{1cm}% too much in my eyes delete this
+                             % line and use the default ...
+
+
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\linespread{1.5}
+\begin{document}
+
+\input{front_page}
+
+\pagenumbering{roman}
+
+\input{declaration}
+
+\input{acknowledgements}
+
+\input{executive_summary}
+
+\newpage
+\tableofcontents
+
+\newpage
+\listoffigures
+\section*{}
+\addcontentsline{toc}{section}{List of Figures}
+
+\newpage
+\listoftables
+\section*{}
+\addcontentsline{toc}{section}{List of Tables}
+
+\input{acronyms}
+
+\input{introduction}
+
+\input{material_and_methodology/material_and_methodology}
+
+\input{results/results}
+
+\input{discussion/discussion}
+
+\input{conclusion}
+
+\newpage
+\section*{}
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\input{annexure/Annexure}
+
+\end{document}

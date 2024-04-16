@@ -1,0 +1,36 @@
+\begin{figure}[H]
+\centering
+
+\pgfplotstableread[col sep=comma]{results/mc_dewatered_dried_dataset.csv} \dataset
+
+\begin{tikzpicture}
+  \begin{axis}[
+   ybar = 4pt,
+    bar width = 10pt,
+   axis lines = left,
+   xlabel = Discharge round,
+   width = 15cm,
+   height = 10cm,
+    ylabel =    Moisture content (\%),
+     enlarge x limits = 0.05,
+     xtick=data,
+     ymax=90, ymin=35,
+    ymajorgrids=true, % Display only major gridlines
+                    yminorgrids=true, % Display minor gridlines
+                    extra y tick labels={}, % Empty labels for extra y ticks
+                    extra y ticks={45,55,65,75,85}, % Add extra y ticks with minor tick values
+                    extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
+                    legend style={at={(0.5,-0.15)},
+    anchor=north,legend columns=-1},
+    ]
+    \addplot table[x index = {0}, y index = {1}]{\dataset};
+    \addplot table[x index = {0}, y index = {2}]{\dataset};
+
+    \legend{Dewatered sludge, Dried sludge}
+  \end{axis}
+  \draw [thick, black] (-2,-2.2) rectangle (14,9);
+\end{tikzpicture}
+
+\caption{Variation in average moisture content of dewatered and dried sludge}
+\label{fig:mc_dewatered_dried_graph}
+\end{figure}
