@@ -1,39 +1,35 @@
 \begin{figure}[H]
 \centering
 
-\pgfplotstableread[col sep=comma]{results/bod_dataset.csv} \dataset
-
+\pgfplotstableread[col sep=comma]{results/measure_predicted_data.csv} \dataset
 \begin{tikzpicture} \begin{axis}[
-    ybar = 1.5pt,
-    bar width = 5pt,
     width = 15cm,
     height = 10cm,
     axis lines = left,
-    enlarge x limits = 0.02,
+    xlabel = Sample Number,
+    % enlargelimits=0.01,
+    xmax = 31,
+    xmin = 9,
     ymin = 0,
     ymax = 500,
-    xmax = 31,
-     ymajorgrids=true, % Display only major gridlines
+    ymajorgrids=true, % Display only major gridlines
                     yminorgrids=true, % Display minor gridlines
                     extra y tick labels={}, % Empty labels for extra y ticks
-                    extra y ticks={50,150, ...,450}, % Add extra y ticks with minor tick values
+                    extra y ticks={50, 150,250,350,450}, % Add extra y ticks with minor tick values
                     extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
     legend style={at={(0.5,-0.15)},
     anchor=north,legend columns=-1},
-    xlabel = Sample Number,
     ylabel = $BOD_5$ (mg/l),
+    xtick=data,
 ]
     \addplot table[x index = {0}, y index = {1}]{\dataset};
     \addplot table[x index = {0}, y index = {2}]{\dataset};
-    \addplot [red,line legend,
-        sharp plot,update limits=false,
-    ] coordinates { (0,75) (31,75) }
-     node [above] at (31,75) {75};
-    \legend{Influent, Effluent, Tolerance limit}
+    \legend{measured, predicted}
 \end{axis}
 \draw [thick, black] (-2,-2.25) rectangle (14,9);
 \end{tikzpicture}
 
-\caption{Variation in \ac{BOD5} of influent and effluent}
-\label{fig:bod_graph}
+\caption{Comparison between actual measured \ac{BOD5}  values  and  calculated \ac{BOD5} values using the regression equation}
+\label{fig:measured_predicted_graph}
 \end{figure}
+

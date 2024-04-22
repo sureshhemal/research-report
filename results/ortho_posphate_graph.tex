@@ -18,7 +18,7 @@
                     extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
     legend style={at={(0.5,-0.15)},
     anchor=north,legend columns=-1},
-    xlabel = Week,
+    xlabel = Sample Number,
     ylabel = Ortho Posphate (\unit{mg/l}),
 ]
     \addplot table[x index = {0}, y index = {1}]{\dataset};
@@ -29,7 +29,7 @@
 \draw [thick, black] (-2,-2.25) rectangle (14,9);
 \end{tikzpicture}
 
-\caption{Variation of Ortho Phosphate of influent and effluent }
+\caption{Variation in orthophosphate of influent and effluent }
 \label{fig:OrthoP_graph}
 \end{figure}
 

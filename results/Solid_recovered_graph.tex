@@ -10,7 +10,7 @@
                     axis lines = left,
                     table/col sep=comma,
                     scaled ticks=false,
-                    xlabel = Date,
+                    xlabel = Time (Date),
                     xlabel style={
                         at={(0.5,-11ex)}
                     },
@@ -40,13 +40,13 @@
                     ]
                     \addplot table[x index = {0}, y index = {1}]{\dataset};
                     
-                    \addplot table[x index = {0}, y index = {2}]{\dataset};
+                    \addplot+[nodes near coords, nodes near coords style={rotate=90, anchor=west}] table[x index = {0}, y index = {2}]{\dataset};
 
     \legend{Return water TSS, Sludge tank TSS}
                 \end{axis}
-                \draw [thick, black] (-2.5,-3.85) rectangle (14,9);
+                \draw [thick, black] (-2.35,-3.85) rectangle (13.75,9);
             \end{tikzpicture}
 
-\caption{Variation of TSS in Sludge storage tank and the return water}
+\caption{Variation in \ac{TSS} of sludge storage tank and the return water}
 \label{fig:Solid_Recovered_graph}
 \end{figure}

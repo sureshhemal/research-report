@@ -12,6 +12,7 @@
     enlarge x limits = 0.02,
     ymin = 0,
     ymax = 1500,
+    xmax = 31,
     ymajorgrids=true, % Display only major gridlines
                     yminorgrids=true, % Display minor gridlines
                     extra y tick labels={}, % Empty labels for extra y ticks
@@ -19,18 +20,21 @@
                     extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
     legend style={at={(0.5,-0.15)},
     anchor=north,legend columns=-1},
-    xlabel = Week,
+    xlabel = Sample Number,
     ylabel = TSS (mg/l),
 ]
     \addplot table[x index = {0}, y index = {1}]{\dataset};
     \addplot table[x index = {0}, y index = {2}]{\dataset};
-    
-    \legend{Influent, Effluent}
+    \addplot [red,line legend,
+        sharp plot,update limits=false,
+    ] coordinates { (0,50) (31,50) }
+    node [above] at (31,50) {50};
+    \legend{Influent, Effluent, Tolerance Limit}
 \end{axis}
-\draw [thick, black] (-2.25,-2.25) rectangle (14.25,9);
+\draw [thick, black] (-2.1,-2.25) rectangle (14,9);
 \end{tikzpicture}
 
-\caption{Variation in TSS of influent and effluent}
+\caption{Variation in \ac{TSS} of influent and effluent}
 \label{fig:tss_graph}
 \end{figure}
 

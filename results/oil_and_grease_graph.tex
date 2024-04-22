@@ -11,24 +11,29 @@
     axis lines = left,
     enlarge x limits = 0.03,
     ymin = 0,
+    ymax = 27.5,
+    xmax = 31,
     ymajorgrids=true, % Display only major gridlines
                     yminorgrids=true, % Display minor gridlines
                     extra y tick labels={}, % Empty labels for extra y ticks
-                    extra y ticks={2.5,7.5,12.5,17.5,22.5}, % Add extra y ticks with minor tick values
+                    extra y ticks={2.5,7.5,12.5,17.5,22.5,27.5}, % Add extra y ticks with minor tick values
                     extra y tick style={grid=minor, grid style={dashed,gray!50}}, % Style for extra y ticks
     legend style={at={(0.5,-0.15)},
     anchor=north,legend columns=-1},
-    xlabel = Week,
+    xlabel = Sample Number,
     ylabel = Oil \& Grease (mg/l),
 ]
     \addplot table[x index = {0}, y index = {1}]{\dataset};
     \addplot table[x index = {0}, y index = {2}]{\dataset};
-    
-    \legend{Influent, Effluent}
+    \addplot [red,line legend,
+        sharp plot,update limits=false,
+    ] coordinates { (0,12) (31,12) }
+    node [above] at (31,12) {12};
+    \legend{Influent, Effluent, Tolerance Limit}
 \end{axis}
 \draw [thick, black] (-2,-2.25) rectangle (14,9);
 \end{tikzpicture}
 
-\caption{Variation of Oil and Grease}
+\caption{Variation in oil and grease of influent and effluent}
 \label{fig:OG_graph}
 \end{figure}
